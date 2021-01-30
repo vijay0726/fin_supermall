@@ -1,8 +1,8 @@
 <template>
   <swiper>
-    <swiper-item v-for="item in banners">
+    <swiper-item v-for="item in banners" :key="item.link">
       <a :href="item.link">
-        <img :src="item.image" alt="" />
+        <img :src="item.image" alt="" @load="imageLoad" />
       </a>
     </swiper-item>
   </swiper>
@@ -19,9 +19,24 @@ export default {
       },
     },
   },
+  data() {
+    return {
+      isLoad: true,
+    };
+  },
   components: {
     SwiperItem,
     Swiper,
+  },
+  methods: {
+    imageLoad() {
+      //限流阀
+      if (this.isLoad) {
+        this.$emit("swiperImageLoad");
+        this.isLoad = !this.isLoad;
+        console.log("000000");
+      }
+    },
   },
 };
 </script>
