@@ -77,12 +77,24 @@ export default {
       tabOffsetTop: 0,
       isFixed: false,
       isDisplay: false,
+      saveY: 0,
     };
   },
   computed: {
     showGoods() {
       return this.goods[this.currentType].list;
     },
+  },
+  destroyed() {
+    console.log("home destroyed");
+  },
+  activated() {
+    this.$refs.scroll.scrollTo(0, this.saveY, 0);
+    this.$refs.scroll.refresh();
+  },
+  deactivated() {
+    this.saveY = this.$refs.scroll.getScrollY();
+    console.log(this.saveY);
   },
   created() {
     //1.请求多个数据
@@ -99,11 +111,9 @@ export default {
   mounted() {
     this.$bus.$on("itemImgLoad", () => {
       const refresh = debounce(this.$refs.scroll.refresh, 200);
+      //切换页面回来后，有refresh未定义的Bug
       refresh();
-      // this.$refs.scroll.refresh();
-      // console.log("---------");
     });
-    // this.swiperImageLoad();
   },
   methods: {
     tabClick(index) {
