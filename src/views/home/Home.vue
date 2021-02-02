@@ -214,6 +214,6 @@ export default {
   left: 0;
   right: 0;
   top: 44px;
-  z-index: 10;
+  z-index: 9;
 }
 </style>
