@@ -78,6 +78,7 @@ export default {
       isFixed: false,
       isDisplay: false,
       saveY: 0,
+      itemImgListener: null,
     };
   },
   computed: {
@@ -93,8 +94,10 @@ export default {
     this.$refs.scroll.refresh();
   },
   deactivated() {
+    //1.保存y值
     this.saveY = this.$refs.scroll.getScrollY();
-    console.log(this.saveY);
+    //2.取消全局事件的监听
+    this.$bus.$off("itemImgLoad", this.itemImgListener);
   },
   created() {
     //1.请求多个数据
@@ -109,11 +112,13 @@ export default {
     // });可能会出现itemImgLoad来得比$refs.scroll挂载的早这种情况，因此在mounted中调用更合适
   },
   mounted() {
-    this.$bus.$on("itemImgLoad", () => {
-      const refresh = debounce(this.$refs.scroll.refresh, 200);
+    let refresh = debounce(this.$refs.scroll.refresh, 200);
+    //对监听的事件进行保存
+    this.itemImgListener = () => {
       //切换页面回来后，有refresh未定义的Bug
       refresh();
-    });
+    };
+    this.$bus.$on("itemImgLoad", this.itemImgListener);
   },
   methods: {
     tabClick(index) {
