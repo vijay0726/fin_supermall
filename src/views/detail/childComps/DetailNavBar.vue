@@ -27,13 +27,14 @@ export default {
   },
   data() {
     return {
-      titles: ["商品", "推荐", "评论", "参数"],
+      titles: ["商品", "参数", "评论", "推荐"],
       currentIndex: 0,
     };
   },
   methods: {
     itemClick(index) {
       this.currentIndex = index;
+      this.$emit("titleClick", index);
     },
     backClick() {
       //有时会保存记录，有时又不保存？？

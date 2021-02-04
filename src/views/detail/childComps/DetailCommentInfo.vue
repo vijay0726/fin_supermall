@@ -43,7 +43,6 @@ export default {
     showDate(value) {
       //1.将时间戳转化为Date对象
       const date = new Date(value * 1000);
-
       //2.将date进行格式化
       return formatDate(date, "yyyy-MM-dd");
     },
@@ -55,6 +54,8 @@ export default {
   padding: 5px 12px;
   color: #333;
   border-bottom: 5px solid #f2f5f8;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
 }
 .info-header {
   position: relative;

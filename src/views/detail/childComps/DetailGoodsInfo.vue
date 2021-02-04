@@ -50,6 +50,8 @@ export default {
 <style scoped>
 .goods-info {
   font-size: 12px;
+  border-bottom: 5px solid #f2f5f8;
+  margin-bottom: 30px;
 }
 .start {
   width: 6px;
