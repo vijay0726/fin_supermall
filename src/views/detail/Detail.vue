@@ -19,6 +19,7 @@
       ></detail-comment-info>
       <goods-list :goods="recommends" ref="recommend"></goods-list>
     </scroll>
+    <detail-bottom-bar></detail-bottom-bar>
   </div>
 </template>
 
@@ -40,6 +41,7 @@ import {
   getRecommend,
 } from "network/detail.js";
 import GoodsList from "../../components/content/goods/GoodsList.vue";
+import DetailBottomBar from "./childComps/DetailBottomBar.vue";
 
 export default {
   name: "Detail",
@@ -53,6 +55,7 @@ export default {
     DetailParamInfo,
     DetailCommentInfo,
     GoodsList,
+    DetailBottomBar,
   },
   data() {
     return {
@@ -112,6 +115,7 @@ export default {
       this.themeTopYs.push(this.$refs.params.$el.offsetTop);
       this.themeTopYs.push(this.$refs.comment.$el.offsetTop);
       this.themeTopYs.push(this.$refs.recommend.$el.offsetTop);
+      this.themeTopYs.push(Number.MAX_VALUE);
       console.log(this.themeTopYs);
     });
   },
@@ -145,11 +149,9 @@ export default {
       let length = this.themeTopYs.length;
       for (let i = 0; i < length; i++) {
         if (
-          (this.currentIndex !== i &&
-            i < length - 1 &&
-            positionY >= this.themeTopYs[i] &&
-            positionY < this.themeTopYs[i + 1]) ||
-          (i === length - 1 && positionY >= this.themeTopYs[i])
+          this.currentIndex !== i &&
+          positionY >= this.themeTopYs[i] &&
+          positionY < this.themeTopYs[i + 1]
         ) {
           this.currentIndex = i;
           this.$refs.nav.currentIndex = this.currentIndex;
