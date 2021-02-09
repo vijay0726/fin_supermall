@@ -2,6 +2,9 @@
   <div id="detail">
     <detail-nav-bar class="detail-nav" @titleClick="titleClick" ref="nav" />
     <scroll class="content" ref="scroll" @scroll="contentScroll">
+      <!-- <ul>
+        <li v-for="item in $store.state.cartList">{{ item }}</li>
+      </ul> -->
       <detail-swiper :top-images="topImages"> </detail-swiper>
       <detail-base-info :goods="goods"></detail-base-info>
       <detail-shop-info :shop="shop"></detail-shop-info>
@@ -19,7 +22,8 @@
       ></detail-comment-info>
       <goods-list :goods="recommends" ref="recommend"></goods-list>
     </scroll>
-    <detail-bottom-bar></detail-bottom-bar>
+    <detail-bottom-bar @addCart="addToCart"></detail-bottom-bar>
+    <back-top @click.native="backClick" v-show="isShowBackUp" />
   </div>
 </template>
 
@@ -42,6 +46,7 @@ import {
 } from "network/detail.js";
 import GoodsList from "../../components/content/goods/GoodsList.vue";
 import DetailBottomBar from "./childComps/DetailBottomBar.vue";
+import BackTop from "../../components/content/backTop/BackTop.vue";
 
 export default {
   name: "Detail",
@@ -56,6 +61,7 @@ export default {
     DetailCommentInfo,
     GoodsList,
     DetailBottomBar,
+    BackTop,
   },
   data() {
     return {
@@ -71,6 +77,7 @@ export default {
       themeTopYs: [],
       getThemeY: null,
       currentIndex: 0,
+      isShowBackUp: false,
     };
   },
   created() {
@@ -157,6 +164,25 @@ export default {
           this.$refs.nav.currentIndex = this.currentIndex;
         }
       }
+      //返回顶部监听
+      if (positionY > 1500) this.isShowBackUp = true;
+      else this.isShowBackUp = false;
+    },
+    backClick() {
+      // console.log(1);
+      this.$refs.scroll.scrollTo(0, 0); //scrollTo(x,y,time,easing,extraTransform,isSilent)第三个参数为返回速度
+    },
+    addToCart() {
+      //获取购物车需要展示的信息
+      const product = {};
+      product.image = this.topImages[0];
+      product.title = this.goods.title;
+      product.desc = this.detailInfo.desc;
+      product.price = this.goods.newPrice;
+      product.iid = this.iid;
+      //2.将商品添加到购物车里
+      //this.$store.cartList.push(product)
+      this.$store.dispatch("addCart", product);
     },
   },
 };

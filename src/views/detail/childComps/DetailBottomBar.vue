@@ -23,6 +23,12 @@
 <script>
 export default {
   name: "DetailBottomBar",
+  methods: {
+    addToCart() {
+      console.log("-------");
+      this.$emit("addCart");
+    },
+  },
 };
 </script>
 <style scoped>
@@ -51,7 +57,7 @@ export default {
   display: block;
   width: 22px;
   height: 22px;
-  margin: 10px auto 3px;
+  margin: 5px auto 3px;
   background: url("~assets/img/detail/detail_bottom.png") 0 0/100%;
 }
 .bar-left .service {
