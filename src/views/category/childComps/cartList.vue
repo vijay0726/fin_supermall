@@ -7,6 +7,7 @@
         :product="item"
       />
     </scroll>
+    <cart-bottom-bar />
   </div>
 </template>
 
@@ -14,12 +15,18 @@
 import Scroll from "@/components/common/scroll/Scroll";
 import { mapGetters } from "vuex";
 import CartListItem from "./CartListItem.vue";
+import CartBottomBar from "./cartBottomBar/CartBottomBar.vue";
 
 export default {
-  components: { CartListItem, Scroll },
+  components: { CartListItem, Scroll, CartBottomBar },
   name: "CartList",
   computed: {
     ...mapGetters(["cartList"]),
+  },
+  data() {
+    return {
+      flag: true,
+    };
   },
   activated() {
     this.$refs.scroll.refresh();
@@ -28,7 +35,7 @@ export default {
 </script>
 <style scoped>
 .cart-list {
-  height: calc(100% - 44px - 49px);
+  height: calc(100% - 44px - 49px - 40px);
 }
 .content {
   height: 100%;

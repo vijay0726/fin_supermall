@@ -7,7 +7,6 @@
   </div>
 </template>
 <script>
-import BScroll from "better-scroll";
 import NavBar from "../../components/common/navbar/NavBar.vue";
 
 // import { mapGetters } from "vuex";
