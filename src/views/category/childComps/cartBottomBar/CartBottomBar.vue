@@ -66,6 +66,8 @@ export default {
 <style scoped>
 .bottom-bar {
   display: flex;
+  position: relative;
+  /* bottom: 56px; */ /* PC和移动端浏览器显示效果不一 */
   /* justify-content: flex-start; */
   height: 40px;
   line-height: 40px;
@@ -73,7 +75,6 @@ export default {
   background-color: red;
 }
 .bottom-bar .left {
-  border-right: 2px solid blue;
   display: flex;
   background-color: rgba(245, 245, 245);
   width: 70%;

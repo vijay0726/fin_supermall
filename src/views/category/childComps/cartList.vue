@@ -7,7 +7,6 @@
         :product="item"
       />
     </scroll>
-    <cart-bottom-bar />
   </div>
 </template>
 
@@ -15,10 +14,9 @@
 import Scroll from "@/components/common/scroll/Scroll";
 import { mapGetters } from "vuex";
 import CartListItem from "./CartListItem.vue";
-import CartBottomBar from "./cartBottomBar/CartBottomBar.vue";
 
 export default {
-  components: { CartListItem, Scroll, CartBottomBar },
+  components: { CartListItem, Scroll },
   name: "CartList",
   computed: {
     ...mapGetters(["cartList"]),
