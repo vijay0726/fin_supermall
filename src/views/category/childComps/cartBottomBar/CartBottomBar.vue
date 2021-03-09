@@ -66,7 +66,10 @@ export default {
 <style scoped>
 .bottom-bar {
   display: flex;
-  position: relative;
+  position: Fixed;
+  bottom: 49px;
+  left: 0;
+  right: 0;
   /* bottom: 56px; */ /* PC和移动端浏览器显示效果不一 */
   /* justify-content: flex-start; */
   height: 40px;

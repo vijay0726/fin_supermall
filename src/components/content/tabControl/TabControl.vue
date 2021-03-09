@@ -3,6 +3,7 @@
     <slot>
       <div
         v-for="(item, index) in titles"
+        :key="index"
         class="tab-control-item"
         :class="{ active: index === currentIndex }"
         @click="itemClick(index)"
