@@ -5,3 +5,12 @@ export function getCategoryDatas() {
     url: '/category'
   })
 }
+export function getCategoryGoods(type, page) {
+  return request({
+    url: '/home/data',
+    params: {
+      type,
+      page
+    }
+  })
+}

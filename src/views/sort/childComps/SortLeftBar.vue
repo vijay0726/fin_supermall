@@ -44,7 +44,7 @@ export default {
 
 <style scoped>
 .sortLeftBar {
-  width: 80px;
+  /* width: 30%; */
   border: 1px solid pink;
   background-color: rgba(242, 242, 242);
 }

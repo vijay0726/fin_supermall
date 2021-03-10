@@ -87,7 +87,7 @@ export default {
     },
   },
   destroyed() {
-    console.log("home destroyed");
+    // console.log("home destroyed");
   },
   activated() {
     this.$refs.scroll.scrollTo(0, this.saveY, 0);
@@ -147,8 +147,8 @@ export default {
     },
     swiperImageLoad() {
       this.tabOffsetTop = this.$refs.tabControl.$el.offsetTop;
-      console.log(this.tabOffsetTop);
-      console.log(this.$refs.tabControl.$el.offsetTop);
+      // console.log(this.tabOffsetTop);
+      // console.log(this.$refs.tabControl.$el.offsetTop);
     },
     backClick() {
       // console.log(1);
@@ -156,7 +156,7 @@ export default {
     },
     getHomeMultidata() {
       getHomeMultidata().then((res) => {
-        console.log(res);
+        // console.log(res);
         this.banners = res.data.banner.list;
         this.recommends = res.data.recommend.list;
       });
