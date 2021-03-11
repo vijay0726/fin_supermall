@@ -31,12 +31,8 @@ export default {
   },
   methods: {
     itemClick(index) {
-      // if (index == this.currentIndex) {
-      //   this.currentIndex = index;
-      //   this.isActive = false;
-      // }
       this.currentIndex = index;
-      // this.emit("leftClick", index);
+      this.$emit("leftClick", index);
     },
   },
 };
@@ -45,7 +41,7 @@ export default {
 <style scoped>
 .sortLeftBar {
   /* width: 30%; */
-  border: 1px solid pink;
+  border: 1px solid #fff;
   background-color: rgba(242, 242, 242);
 }
 .sortLeftBar ul {

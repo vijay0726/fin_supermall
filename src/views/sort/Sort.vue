@@ -6,7 +6,11 @@
     </nav-bar>
     <!-- 左侧分类 -->
     <scroll class="contentFirst" :probe-type="3">
-      <sort-left-bar :category="category" class="sort-left-bar" />
+      <sort-left-bar
+        :category="category"
+        @leftClick="leftClick"
+        class="sort-left-bar"
+      />
     </scroll>
     <!-- 右侧商品 -->
     <scroll class="contentSecond" ref="scroll" :probe-type="3">
@@ -64,13 +68,20 @@ export default {
       });
       // console.log(this.goods);
     },
-    // shiyan() {
-    //   let height = document.documentElement.clientHeight;
-    //   let childH = this.$refs.leftBar.$el.offsetHeight;
-    //   console.log("可视高度" + height);
-    //   console.log("组件高" + childH);
-    // },
-    // leftItem(index) {},
+    leftClick(index) {
+      let temp = index % 3;
+      switch (temp) {
+        case 0:
+          this.currentType = "pop";
+          break;
+        case 1:
+          this.currentType = "new";
+          break;
+        case 2:
+          this.currentType = "sell";
+          break;
+      }
+    },
   },
   created() {
     this.getCategoryDatas();
